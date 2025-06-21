@@ -203,3 +203,26 @@ for row in temp_series:
         max_temp = row['temp']
         max_time = row['time']
 print("Max Temp Timestamp:", max_time, "Temp:", max_temp)
+
+# --- Additional Pandas Tasks (Manual Python Logic) ---
+
+# Convert column to float and handle errors
+data_convert = [{'value': '10'}, {'value': 'abc'}, {'value': '20.5'}]
+for row in data_convert:
+    try:
+        row['value'] = float(row['value'])
+    except ValueError:
+        row['value'] = None
+print("Converted Values:", data_convert)
+
+# Label encoding for categorical column
+data_labels = [{'Category': 'High'}, {'Category': 'Medium'}, {'Category': 'Low'}, {'Category': 'Medium'}]
+label_map = {}
+code = 0
+for row in data_labels:
+    label = row['Category']
+    if label not in label_map:
+        label_map[label] = code
+        code += 1
+    row['CategoryEncoded'] = label_map[label]
+print("Label Encoded Data:", data_labels)
